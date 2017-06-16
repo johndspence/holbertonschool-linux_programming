@@ -1,11 +1,6 @@
 # Prerequisites
 *.d
 
-# Object files
-*.ko
-*.obj
-*.elf
-
 # Linker output
 *.ilk
 *.map
@@ -14,7 +9,6 @@
 # Precompiled Headers
 *.gch
 *.pch
-
 
 # Debug files
 *.dSYM/
@@ -30,3 +24,5 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
+
+*.~
