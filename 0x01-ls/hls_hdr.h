@@ -7,6 +7,6 @@
 #include <errno.h>
 #include <string.h>
 
-int chk_dir(char *path);
+int chkdir(char *path);
 
 #endif /*HEADER*/
