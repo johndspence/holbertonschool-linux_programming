@@ -47,7 +47,7 @@ char *_getline(const int fd)
 	{
 		return (NULL);
 	}
-	buf = 0;
+	buf = '\0';
 	for (i = 0; buf != '\n'; i++)
 	{
 		if ((read(fd, &buf, READ_SIZE) == 0))
