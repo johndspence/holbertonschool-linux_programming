@@ -57,7 +57,7 @@ char *_getline(const int fd)
 		}
 		if (i >= (int)ret_ln_sz)
 		{
-			ret_ln_sz = ret_ln_sz + 1;
+			ret_ln_sz = BUF_SIZE + 1;
 			ret_ln = _realloc(ret_ln, ret_ln_sz);
 			if (ret_ln == NULL)
 			{
