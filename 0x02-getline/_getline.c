@@ -2,7 +2,7 @@
 
 /**
  * _realloc - function changes the size of the memory block pointed to by ptr
- * to size bytes
+ * to size bytes.
  *
  * @ptr: Memory block to be increased.
  * @size: Number of bytes by which to increase memory block.
