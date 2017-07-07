@@ -47,6 +47,7 @@ char *_getline(const int fd)
 	{
 		return (NULL);
 	}
+	memset(ret_ln, 0, 2);
 	buf = '\0';
 	for (i = 0; buf != '\n'; i++)
 	{
