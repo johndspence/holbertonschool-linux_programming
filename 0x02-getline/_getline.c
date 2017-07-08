@@ -16,7 +16,7 @@ void *_realloc(void *ptr, size_t size)
 	new_ret_ln = malloc(sizeof(char) * size);
 	if (new_ret_ln)
 	{
-		memcpy(new_ret_ln, ptr, size);
+		memcpy(new_ret_ln, ptr, size - 1);
 		free(ptr);
 		return (new_ret_ln);
 	}
