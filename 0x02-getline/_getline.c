@@ -66,6 +66,6 @@ char *_getline(const int fd)
 		}
 		ret_ln[i] = buf;
 	}
-	ret_ln[i - 1] = '\0';
+	ret_ln[i - 1] = 0;
 	return (ret_ln);
 }
