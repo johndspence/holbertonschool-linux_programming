@@ -50,7 +50,7 @@ char *_getline(const int fd)
 	buf = '\0';
 	for (i = 0; buf != '\n'; i++)
 	{
-		if ((read(fd, &buf, READ_SIZE) == 0))
+		if ((read(fd, &buf, READ_SIZE) < 1))
 		{
 			free(ret_ln);
 			return (NULL);
