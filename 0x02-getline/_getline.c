@@ -44,7 +44,7 @@ char *_getline(const int fd)
 
 	ret_ln_sz = BUF_SIZE;
 	ret_ln = malloc(sizeof(char) * ret_ln_sz);
-	if (fd == -1 || ret_ln == NULL)
+	if (ret_ln == NULL)
 	{
 		return (NULL);
 	}
