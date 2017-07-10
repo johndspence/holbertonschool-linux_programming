@@ -14,7 +14,6 @@ void *_realloc(void *ptr, size_t size)
 	char *new_ret_ln;
 
 	new_ret_ln = malloc(sizeof(char) * size);
-	memset
 	if (new_ret_ln)
 	{
 		memcpy(new_ret_ln, ptr, size - 1);
@@ -44,7 +43,7 @@ char *_getline(const int fd)
 
 	ret_ln_sz = BUF_SIZE;
 	ret_ln = malloc(sizeof(char) * ret_ln_sz);
-	if (ret_ln == NULL)
+	if (fd == -1 || ret_ln == NULL)
 	{
 		return (NULL);
 	}
