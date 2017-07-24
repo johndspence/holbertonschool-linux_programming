@@ -53,14 +53,13 @@ except IOError as e:
 
 # Check each line in maps to find heap and execute read, find, write
 for line in maps_file:
-    if not line:
-        maps_file.close
-        sys.exit(1)
-
     sline = line.split(' ')
 
     # check if we found the heap
     if sline[-1][:-1] != "[heap]":
+        if not line:
+            maps_file.close
+            sys.exit(1)
         continue
 
     print("[*] Found [heap]:")  # Need to allow for no heap found
