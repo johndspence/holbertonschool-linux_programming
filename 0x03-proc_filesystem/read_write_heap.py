@@ -15,11 +15,13 @@ import sys
 
 
 def print_usage_and_exit():
+    """Prints usage instructions and exits with 1"""
     print('Usage: {} pid search write'.format(sys.argv[0]))
     sys.exit(1)
 
 
 def files_close():
+	"""Closes open files"""
     maps_file.close()
     mem_file.close()
 
