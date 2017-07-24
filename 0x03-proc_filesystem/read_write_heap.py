@@ -116,7 +116,7 @@ for line in maps_file:
     except Exception:
         print("Can't find '{}'".format(search_string))
         files_close()
-        sys.exit(0)
+        sys.exit(1)
 
     # write the new string
     try:
@@ -127,10 +127,11 @@ for line in maps_file:
     except Exception:
         print("Can't write '{}'".format(write_string))
         files_close()
-        sys.exit(0)
+        sys.exit(1)
 
     # close files
     files_close()
 
     # there is only one heap in our example
-    break
+    sys.exit(0)
+    
