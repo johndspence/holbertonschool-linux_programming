@@ -49,7 +49,7 @@ try:
 except IOError as e:
     print("[ERROR] Can not open file {}:".format(maps_filename))
     print("I/O error({}): {}".format(e.errno, e.strerror))
-    sys.exit(1)
+    print_usage_and_exit()
 
 # Check each line in maps to find heap and execute read, find, write
 for line in maps_file:
@@ -77,8 +77,7 @@ for line in maps_file:
     # check if there is read and write permission
     if perm[0] != 'r' or perm[1] != 'w':
         print("[*] {} does not have read/write permission".format(pathname))
-        maps_file.close()
-        sys.exit(0)
+        print_usage_and_exit()
 
     # get start and end of the heap in the virtual memory
     addr = addr.split("-")
@@ -96,8 +95,7 @@ for line in maps_file:
     except IOError as e:
         print("[ERROR] Can not open file {}:".format(mem_filename))
         print("I/O error({}): {}".format(e.errno, e.strerror))
-        files_close()
-        sys.exit(1)
+        print_usage_and_exit()
 
     # read heap
     try:
@@ -105,7 +103,8 @@ for line in maps_file:
         heap = mem_file.read(addr_end - addr_start)
     except Exception:
         print("Can't find '{}'".format(addr_start))
-        sys.exit(1)
+        files_close()
+        print_usage_and_exit()
 
     # find string
     try:
@@ -114,7 +113,7 @@ for line in maps_file:
     except Exception:
         print("Can't find '{}'".format(search_string))
         files_close()
-        sys.exit(1)
+        print_usage_and_exit()
 
     # write the new string
     try:
@@ -127,7 +126,7 @@ for line in maps_file:
     except Exception:
         print("Can't write '{}'".format(write_string))
         files_close()
-        sys.exit(1)
+        print_usage_and_exit
 
     # close files
     files_close()
