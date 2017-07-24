@@ -112,17 +112,22 @@ for line in maps_file:
         i = heap.index(bytes(search_string, "ASCII"))
         # https://docs.python.org/3/library/stdtypes.html#bytes.index
         # also use find?
+        print("[*] Found '{}' at {:x}".format(search_string, i))
     except Exception:
         print("Can't find '{}'".format(search_string))
         files_close()
         sys.exit(0)
-    print("[*] Found '{}' at {:x}".format(search_string, i))
 
     # write the new string
-    print("[*] Writing '{}' at {:x}".format(write_string, addr_start + i))
-    mem_file.seek(addr_start + i)
-    adjusted_string = write_string.ljust(len(search_string))
-    mem_file.write(bytes(adjusted_string, "ASCII"))
+    try:
+        print("[*] Writing '{}' at {:x}".format(write_string, addr_start + i))
+        mem_file.seek(addr_start + i)
+        adjusted_string = write_string.ljust(len(search_string))
+        mem_file.write(bytes(adjusted_string, "ASCII"))
+    except Exception:
+        print("Can't write '{}'".format(write_string))
+        files_close()
+        sys.exit(0)
 
     # close files
     files_close()
