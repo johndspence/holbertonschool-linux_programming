@@ -134,4 +134,3 @@ for line in maps_file:
 
     # there is only one heap in our example
     sys.exit(0)
-    
