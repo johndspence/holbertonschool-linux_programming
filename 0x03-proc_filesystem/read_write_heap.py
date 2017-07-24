@@ -57,9 +57,6 @@ for line in maps_file:
 
     # check if we found the heap
     if sline[-1][:-1] != "[heap]":
-        if not line:
-            maps_file.close
-            sys.exit(1)
         continue
 
     print("[*] Found [heap]:")  # Need to allow for no heap found
@@ -125,6 +122,8 @@ for line in maps_file:
         mem_file.seek(addr_start + i)
         adjusted_string = write_string.ljust(len(search_string))
         mem_file.write(bytes(adjusted_string, "ASCII"))
+        files_close()
+        sys.exit(0)
     except Exception:
         print("Can't write '{}'".format(write_string))
         files_close()
@@ -132,6 +131,4 @@ for line in maps_file:
 
     # close files
     files_close()
-
-    # there is only one heap in our example
-    sys.exit(0)
+    sys.exit(1)
