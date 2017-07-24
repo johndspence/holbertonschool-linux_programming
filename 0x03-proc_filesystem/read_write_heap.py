@@ -21,7 +21,7 @@ def print_usage_and_exit():
 
 
 def files_close():
-	"""Closes open files"""
+    """Closes open files"""
     maps_file.close()
     mem_file.close()
 
