@@ -77,14 +77,14 @@ for line in maps_file:
     if perm[0] != 'r' or perm[1] != 'w':
         print("[*] {} does not have read/write permission".format(pathname))
         maps_file.close()
-        exit(0)
+        sys.exit(0)
 
     # get start and end of the heap in the virtual memory
     addr = addr.split("-")
     if len(addr) != 2:
         print("[*] Wrong addr format")
         maps_file.close()
-        exit(1)
+        sys.exit(1)
     addr_start = int(addr[0], 16)
     addr_end = int(addr[1], 16)
     print("\tAddr start [{:x}] | end [{:x}]".format(addr_start, addr_end))
@@ -96,7 +96,7 @@ for line in maps_file:
         print("[ERROR] Can not open file {}:".format(mem_filename))
         print("I/O error({}): {}".format(e.errno, e.strerror))
         files_close()
-        exit(1)
+        sys.exit(1)
 
     # read heap
     mem_file.seek(addr_start)  # why this line?
@@ -110,13 +110,14 @@ for line in maps_file:
     except Exception:
         print("Can't find '{}'".format(search_string))
         files_close()
-        exit(0)
+        sys.exit(0)
     print("[*] Found '{}' at {:x}".format(search_string, i))
 
     # write the new string
     print("[*] Writing '{}' at {:x}".format(write_string, addr_start + i))
     mem_file.seek(addr_start + i)
-    mem_file.write(bytes(write_string, "ASCII"))
+    adjusted_string = write_string.ljust(len(search_string))
+    mem_file.write(bytes(adjusted_string, "ASCII"))
 
     # close files
     files_close()
