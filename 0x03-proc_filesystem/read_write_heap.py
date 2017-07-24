@@ -5,9 +5,9 @@ of a process
 
 Usage: ./read_write_heap.py PID search_string replace_by_string
 Where:
-- PID is the pid of the target process
+- PID is the pid of the process
 - search_string is the ASCII string you are looking to overwrite
-- replace_by_string is the ASCII string you want to replace
+- replace_by_string is the ASCII string you want to replace the
   search_string with
 '''
 
@@ -57,6 +57,8 @@ for line in maps_file:
 
     # check if we found the heap
     if sline[-1][:-1] != "[heap]":
+        if not sline:
+            sys.exit(1)
         continue
 
     print("[*] Found [heap]:")  # Need to allow for no heap found
@@ -101,7 +103,7 @@ for line in maps_file:
 
     # read heap
     try:
-        mem_file.seek(addr_start)  # why this line?
+        mem_file.seek(addr_start)
         heap = mem_file.read(addr_end - addr_start)
     except Exception:
         print("Can't find '{}'".format(addr_start))
@@ -110,8 +112,6 @@ for line in maps_file:
     # find string
     try:
         i = heap.index(bytes(search_string, "ASCII"))
-        # https://docs.python.org/3/library/stdtypes.html#bytes.index
-        # also use find?
         print("[*] Found '{}' at {:x}".format(search_string, i))
     except Exception:
         print("Can't find '{}'".format(search_string))
