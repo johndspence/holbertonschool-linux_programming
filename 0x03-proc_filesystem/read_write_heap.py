@@ -58,6 +58,7 @@ for line in maps_file:
     # check if we found the heap
     if sline[-1][:-1] != "[heap]":
         continue
+
     print("[*] Found [heap]:")  # Need to allow for no heap found
 
     # parse line
@@ -99,8 +100,12 @@ for line in maps_file:
         sys.exit(1)
 
     # read heap
-    mem_file.seek(addr_start)  # why this line?
-    heap = mem_file.read(addr_end - addr_start)
+    try:
+        mem_file.seek(addr_start)  # why this line?
+        heap = mem_file.read(addr_end - addr_start)
+    except Exception:
+        print("Can't find '{}'".format(addr_start))
+        sys.exit(1)
 
     # find string
     try:
