@@ -2,6 +2,7 @@
 
 /**
  * print_hello - Prints " Hello :)"
+ * @signum: signal to be handled
  *
  * Return: void
  */
