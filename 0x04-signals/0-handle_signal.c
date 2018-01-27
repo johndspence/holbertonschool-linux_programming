@@ -1,6 +1,7 @@
 #include "signals.h"
 
-/** signal_handler - Prints Gotcha! [<signum>] when a signal is received.
+/**
+ * signal_handler - Prints Gotcha! [<signum>] when a signal is received.
  * @signum: signal integer
  * Return: void
  */
