@@ -17,7 +17,10 @@ void signal_handler(int signum)
  */
 int handle_sigaction(void)
 {
-	if (signal(SIGINT, signal_handler) == SIG_ERR)
-		return (-1);
-	return (0);
+	struct sigaction sa;
+
+	sa.sa_handler = signal_handler;
+	sigemptyset(&sa.sa_mask);
+	sa.sa_flags = SA_RESTART; /* Restart functions ifinterrupted by handler */
+	return (sigaction(SIGINT, &sa, NULL));
 }
